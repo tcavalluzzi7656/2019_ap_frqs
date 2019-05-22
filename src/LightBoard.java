@@ -18,12 +18,22 @@ public class LightBoard {
 
     public boolean evaluateLight(int row, int col){
         int oncount = 0;
+        for(int i = 0; i < lights.length; i++){
+            if(lights[i][col]){
+                oncount++;
+            }
+        }
         if(lights[row][col]){
-            for(int i = 0; i < lights.length; i++){
-                if(lights[i][col]){
-                    oncount++;
+            if(oncount % 2 == 0){
+                return false;
+            }
+        } else {
+            if(! lights[row][col]){
+                if(oncount % 3 == 0) {
+                    return true;
                 }
             }
         }
+        return lights[row][col];
     }
 }
